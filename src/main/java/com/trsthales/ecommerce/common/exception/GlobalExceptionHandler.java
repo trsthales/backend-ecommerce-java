@@ -5,7 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -65,8 +66,12 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problem);
     }
 
-    @ExceptionHandler(AuthenticationCredentialsNotFoundException.class)
-    public ResponseEntity<ProblemDetail> handleAuthenticationRequired(AuthenticationCredentialsNotFoundException ex) {
+    @ExceptionHandler({
+            AuthenticationCredentialsNotFoundException.class,
+            BadCredentialsException.class,
+            AuthenticationException.class
+    })
+    public ResponseEntity<ProblemDetail> handleAuthenticationRequired(Exception ex) {
         ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, ex.getMessage());
         problem.setTitle("Authentication Required");
         problem.setType(URI.create("https://api.ecommerce.com/errors/unauthorized"));

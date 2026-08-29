@@ -64,29 +64,30 @@ LEGENDA:
 
 ## 🔐 Fase 2: Identidade & Segurança (`identity`)
 
-- [ ] **TASK-2.1 | Schema e Entidades de Identidade**
+- [x] **TASK-2.1 | Schema e Entidades de Identidade**
   - **Arquivos:**
-    - `src/main/resources/db/migration/identity/V2__create_identity_tables.sql`
+    - `src/main/resources/db/migration/V2__create_identity_tables.sql`
     - `com.trsthales.ecommerce.identity.domain.User.java`
     - `com.trsthales.ecommerce.identity.domain.Role.java`
   - **Ação:** Criar tabelas `users`, `roles`, `user_roles` com hash de senha via BCrypt.
 
-- [ ] **TASK-2.2 | Provedor de Chaves RSA & Token Service**
+- [x] **TASK-2.2 | Provedor de Chaves RSA & Token Service**
   - **Arquivos:**
     - `com.trsthales.ecommerce.identity.infrastructure.RsaKeyProvider.java`
     - `com.trsthales.ecommerce.identity.application.TokenService.java`
   - **Ação:** Configurar par de chaves RSA assimétricas para assinatura (Private Key) e validação (Public Key) de tokens JWT com claims de `userId`, `email` e `roles`.
 
-- [ ] **TASK-2.3 | Configuração de Segurança Spring & Bridge de Contexto**
+- [x] **TASK-2.3 | Configuração de Segurança Spring & Bridge de Contexto**
   - **Arquivos:**
     - `com.trsthales.ecommerce.identity.infrastructure.SecurityConfig.java`
     - `com.trsthales.ecommerce.identity.infrastructure.JwtAuthenticationConverter.java`
   - **Ação:** Configurar `SecurityFilterChain` OAuth2 Resource Server convertendo JWTs validados diretamente no `AuthenticatedUser` do módulo `common`.
 
-- [ ] **TASK-2.4 | Endpoints de Autenticação & Registro**
+- [x] **TASK-2.4 | Endpoints de Autenticação & Registro**
   - **Arquivos:**
     - `com.trsthales.ecommerce.identity.api.AuthController.java`
-    - `com.trsthales.ecommerce.identity.api.dto.AuthRequests.java`
+    - `com.trsthales.ecommerce.identity.api.dto.RegisterUserRequest.java`
+    - `com.trsthales.ecommerce.identity.api.dto.LoginRequest.java`
   - **Ação:** Implementar rotas públicas `POST /api/v1/auth/register` e `POST /api/v1/auth/token`.
   - 🧪 **Teste:** `AuthIntegrationTest.java` cobrindo registro, login, expiração e rejeição de tokens adulterados.
 
