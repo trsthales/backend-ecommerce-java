@@ -95,24 +95,24 @@ LEGENDA:
 
 ## 📦 Fase 3: Catálogo, Busca & Imagens (`catalog`)
 
-- [ ] **TASK-3.1 | Schema do Catálogo com Variações de SKU**
+- [x] **TASK-3.1 | Schema do Catálogo com Variações de SKU**
   - **Arquivos:**
-    - `src/main/resources/db/migration/catalog/V3__create_catalog_tables.sql`
+    - `src/main/resources/db/migration/V3__create_catalog_tables.sql`
     - `com.trsthales.ecommerce.catalog.domain.Category.java`
     - `com.trsthales.ecommerce.catalog.domain.Product.java`
     - `com.trsthales.ecommerce.catalog.domain.ProductVariant.java`
   - **Ação:** Modelar catálogo com suporte a SKU, atributos (cor/tamanho) e preço de tabela.
 
-- [ ] **TASK-3.2 | Busca Full-Text com PostgreSQL (GIN Index)**
+- [x] **TASK-3.2 | Busca Full-Text com PostgreSQL (GIN Index)**
   - **Ação:** Criar coluna gerada `search_vector (tsvector)` indexada com GIN em `products`, com queries nativas de ranking por relevância.
 
-- [ ] **TASK-3.3 | Adapter de Armazenamento de Imagens S3/MinIO**
+- [x] **TASK-3.3 | Adapter de Armazenamento de Imagens S3/MinIO**
   - **Arquivos:**
     - `com.trsthales.ecommerce.catalog.infrastructure.ImageStorageService.java`
-    - `com.trsthales.ecommerce.catalog.infrastructure.S3ImageStorageAdapter.java`
+    - `com.trsthales.ecommerce.catalog.infrastructure.S3ImageStorageService.java`
   - **Ação:** Upload e geração de URLs públicas de imagens via MinIO / S3.
 
-- [ ] **TASK-3.4 | API Pública do Módulo Catálogo 🎯 INV-006**
+- [x] **TASK-3.4 | API Pública do Módulo Catálogo 🎯 INV-006**
   - **Arquivo:** `com.trsthales.ecommerce.catalog.api.CatalogQueryService.java`
   - **Ação:** Expor interface `@NamedInterface` para que outros módulos consultem produtos sem tocar em repositórios JPA alheios.
   - 🧪 **Teste:** `CatalogIntegrationTest.java` cobrindo busca textual e upload no MinIO via Testcontainers.
