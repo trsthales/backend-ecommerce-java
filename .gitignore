@@ -1,0 +1,94 @@
+# =========================================================================
+# Build & Compilation Artifacts (Maven & Java)
+# =========================================================================
+target/
+bin/
+out/
+build/
+
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
+
+# Maven Release & Helper Files
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.definitions
+.mvn/wrapper/maven-wrapper.jar
+
+# =========================================================================
+# Logs & Environment Variables / Secrets
+# =========================================================================
+*.log
+logs/
+*.env
+.env
+.env.local
+.env.*.local
+
+# Local Spring Configuration (Local profiles containing sensitive data/secrets)
+application-local.yml
+application-local.properties
+application-dev-local.yml
+application-dev-local.properties
+
+# =========================================================================
+# IDE & Editor Settings
+# =========================================================================
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+*.userlibraries
+
+# Eclipse
+.metadata
+.classpath
+.project
+.settings/
+*.factorypath
+
+# VS Code
+.vscode/
+
+# NetBeans
+nbproject/private/
+nbbuild/
+dist/
+
+# Visual Studio / General Editors
+.history/
+*.swp
+*.swo
+*~
+*.bak
+
+# =========================================================================
+# Operating System Files
+# =========================================================================
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+
+# Linux
+.directory
