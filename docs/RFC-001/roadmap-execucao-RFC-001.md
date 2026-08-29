@@ -18,15 +18,15 @@ LEGENDA:
   - **Ação:** Criar ADR inicial em `.ai-context/decisions/DEC-001.md` documentando a adoção do Spring Modulith, Java 21 e PostgreSQL.
   - **Critério de Aceite:** `pactx doctor` reportando `0 errors, 0 warnings`.
 
-- [ ] **TASK-0.2 | Configuração do Build (`pom.xml` / `build.gradle.kts`)**
+- [x] **TASK-0.2 | Configuração do Build (`pom.xml` / `build.gradle.kts`)**
   - **Ação:** Configurar Java 21, Spring Boot 3.4+, Spring Modulith Starter (BOM), PostgreSQL Driver, Flyway Core, Testcontainers (Postgres, Redis), MapStruct, Lombok e Spring Security OAuth2 Resource Server.
   - **Critério de Aceite:** Compilação limpa via `mvn clean compile`.
 
-- [ ] **TASK-0.3 | Ambiente de Desenvolvimento Local (`docker-compose.yml`)**
+- [x] **TASK-0.3 | Ambiente de Desenvolvimento Local (`docker-compose.yml`)**
   - **Ação:** Provisionar PostgreSQL 16 (porta 5432), Redis 7 Alpine (porta 6379) e MinIO S3-Compatible (portas 9000/9001).
   - **Critério de Aceite:** Containers subindo saudáveis via `docker compose up -d`.
 
-- [ ] **TASK-0.4 | Infraestrutura Base de Testes de Integração**
+- [x] **TASK-0.4 | Infraestrutura Base de Testes de Integração**
   - **Arquivo:** `src/test/java/com/trsthales/ecommerce/AbstractIntegrationTest.java`
   - **Ação:** Criar classe base singleton para inicialização dos containers PostgreSQL e Redis via Testcontainers com `@DynamicPropertySource`.
   - **Critério de Aceite:** Um teste `@SpringBootTest` de *smoke test* executando com sucesso contra os containers.
@@ -35,18 +35,18 @@ LEGENDA:
 
 ## 🧩 Fase 1: Kernel Compartilhado (`common`)
 
-- [ ] **TASK-1.1 | Value Object `Money` & Algoritmo do Maior Resto 🎯 INV-004**
+- [x] **TASK-1.1 | Value Object `Money` & Algoritmo do Maior Resto 🎯 INV-004**
   - **Arquivo:** `com.trsthales.ecommerce.common.domain.Money.java`
   - **Ação:** Implementar VO imutável com `BigDecimal`, validação de moeda ISO-4217, operações aritméticas e o método `distribute(List<BigDecimal> weights)` (Hare-Niemeyer Method).
   - 🧪 **Teste:** `MoneyTest.java` validando rateios ímpares (ex: R$ 10,00 entre 3 itens de peso igual $\to$ R$ 3,34 + R$ 3,33 + R$ 3,33 = R$ 10,00 exatos).
 
-- [ ] **TASK-1.2 | Contrato Agnóstico de Usuário Autenticado 🎯 INV-006**
+- [x] **TASK-1.2 | Contrato Agnóstico de Usuário Autenticado 🎯 INV-006**
   - **Arquivos:**
     - `com.trsthales.ecommerce.common.security.AuthenticatedUser.java`
     - `com.trsthales.ecommerce.common.security.CurrentUserProvider.java`
   - **Ação:** Definir o record imutável de identidade e a interface de acesso ao `SecurityContextHolder`.
 
-- [ ] **TASK-1.3 | Motor Universal de Idempotência & Crash Recovery 🎯 INV-003**
+- [x] **TASK-1.3 | Motor Universal de Idempotência & Crash Recovery 🎯 INV-003**
   - **Arquivos:**
     - `src/main/resources/db/migration/common/V1__create_idempotency_keys.sql`
     - `com.trsthales.ecommerce.common.idempotency.IdempotencyFilter.java`
@@ -54,7 +54,7 @@ LEGENDA:
   - **Ação:** Criar tabela `idempotency_keys` com `locked_until`, interceptor de request e rotina de liberação de chave travada após timeout de 2 minutos (*crash recovery*).
   - 🧪 **Teste:** `IdempotencyEngineIntegrationTest.java` simulando replay de requisições e recuperação de chaves travadas.
 
-- [ ] **TASK-1.4 | Tratamento Uniforme de Erros (RFC 7807)**
+- [x] **TASK-1.4 | Tratamento Uniforme de Erros (RFC 7807)**
   - **Arquivos:**
     - `com.trsthales.ecommerce.common.exception.ProblemDetailsAdvice.java`
     - `com.trsthales.ecommerce.common.exception.DomainException.java`
